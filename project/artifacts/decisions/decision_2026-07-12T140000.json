@@ -1,0 +1,636 @@
+{
+  "timestamp": "2026-07-12 14:00:00",
+  "action": "recommend",
+  "headline": "Increase R-201 outlet temperature (HDS reactor) 372.3674 -> 372.4182 degC (+1 more)",
+  "state_block": {
+    "timestamp": "2026-07-12 14:00:00",
+    "key_parameters": {
+      "HDS:T5": 372.3674,
+      "HDS:F15": 3512.2043,
+      "HDS:P3": 3.6282,
+      "HDS:F26": 288.9772,
+      "HDS:F2": 94445.2734,
+      "AVT:T55": 382.0178,
+      "AVT:T20": 113.0824,
+      "AVT:P67": 1.0909,
+      "AVT:F29": 10.0884
+    },
+    "derived": {
+      "derived:crude_charge_tph": 914.7793,
+      "derived:T_WABT_C": 370.0573,
+      "derived:LHSV_rel": 1.1277,
+      "derived:pH2_proxy_MPa": 2.9026,
+      "derived:operating": 1.0,
+      "feed_sulfur_mgkg": 9146.9997
+    },
+    "freshness_h": {
+      "LIMS:sulfur": 4.0,
+      "PAK:sulfur": 0.0,
+      "LIMSFEED:sulfur": 72.0
+    },
+    "flags": {
+      "PAK:sulfur__stale": false,
+      "PAK:D15__stale": false,
+      "PAK:sulfur__outlier": false,
+      "LIMS:sulfur__missing": false
+    }
+  },
+  "risk_block": {
+    "sulfur_forecast_mgkg": 5.569,
+    "chance_constrained_value_mgkg": 9.979,
+    "limit_mgkg": 10.0,
+    "p_violation": 0.0492,
+    "set_based_bound_mgkg": 9.237,
+    "severity": 0.1302,
+    "severity_class": "normal",
+    "severity_factors": {
+      "HDS:W10": 0.0,
+      "AVT:T55": 0.0,
+      "HDS:T5": 0.0,
+      "HDS:F26": 0.0,
+      "AVT:F29": 0.1302
+    },
+    "deactivation_hypothesis": {
+      "slope_c_per_1000h": -0.5158960818316968,
+      "p_value": 1.6321279119881092e-42,
+      "n": 979.0,
+      "span_h": 21864.0,
+      "significant": false,
+      "status": "[DOP, hypothesis]",
+      "note": "Normalised-temperature drift (eq 62). This is an offset hypothesis (eq 47), NOT a measured catalyst activity.",
+      "available": true,
+      "normalisation_r2": 0.3091513462924421
+    }
+  },
+  "action_block": {
+    "changes": [
+      {
+        "tag": "HDS:T5",
+        "label": "R-201 outlet temperature (HDS reactor)",
+        "unit": "degC",
+        "current": 372.3674,
+        "recommended": 372.4182,
+        "delta": 0.0508,
+        "direction": "increase"
+      },
+      {
+        "tag": "HDS:F26",
+        "label": "HDS feed rate (volumetric)",
+        "unit": "m3/h",
+        "current": 288.9772,
+        "recommended": 289.9097,
+        "delta": 0.9325,
+        "direction": "increase"
+      }
+    ],
+    "certifies_spec": true,
+    "rate_limited": true,
+    "note": "every change respects |du| <= du_max and the declared [DOP] model range (§31)"
+  },
+  "effect_block": {
+    "sulfur_now_mgkg": 5.569,
+    "sulfur_after_mgkg": 5.588,
+    "sulfur_after_with_backoff_mgkg": 10.0,
+    "margin_to_limit_mgkg": 0.0,
+    "throughput_proxy": 2.743,
+    "energy_proxy": 13.02,
+    "severity_after": 0.1302,
+    "objective_J": 1.4263,
+    "blend": {
+      "fractions": {
+        "hydrotreated_diesel": 1.0,
+        "straight_run_diesel": 0.0
+      },
+      "blended_sulfur_mgkg": 5.588,
+      "sum_w": 1.0,
+      "note": "sulfur blends linearly in mass (eq 7); the straight-run component carries the measured HDS feed sulfur, so its admissible fraction is what the 10 mg/kg limit allows."
+    },
+    "response_timing": {
+      "HDS:T5": {
+        "transport_delay_h": 2.0,
+        "time_constant_h": 0.0,
+        "time_to_63pct_of_effect_h": 2.17,
+        "effect_within_horizon_mgkg": -0.0082
+      },
+      "HDS:F26": {
+        "transport_delay_h": 4.5,
+        "time_constant_h": 0.0,
+        "time_to_63pct_of_effect_h": 4.67,
+        "effect_within_horizon_mgkg": 0.0274
+      }
+    },
+    "horizon_h": 7.0,
+    "vs_hold": {
+      "dJ": -0.0051,
+      "d_throughput": 0.009,
+      "d_energy": 0.002,
+      "d_sulfur": 0.019
+    }
+  },
+  "constraint_block": {
+    "gate_eq66": [],
+    "passed": true,
+    "checks": [
+      {
+        "kind": "bound",
+        "name": "HDS:T5",
+        "ok": true,
+        "detail": "ok",
+        "status": "[DOP]",
+        "value": 372.41818223594197,
+        "lo": 354.14154006958006,
+        "hi": 382.7442393493652
+      },
+      {
+        "kind": "bound",
+        "name": "HDS:P3",
+        "ok": true,
+        "detail": "ok",
+        "status": "[DOP]",
+        "value": 3.6282212734222417,
+        "lo": 3.495408313274383,
+        "hi": 3.783628956079483
+      },
+      {
+        "kind": "bound",
+        "name": "HDS:F26",
+        "ok": true,
+        "detail": "ok",
+        "status": "[DOP]",
+        "value": 289.909689205549,
+        "lo": 187.3294814300537,
+        "hi": 293.0066125488281
+      },
+      {
+        "kind": "spec",
+        "name": "sulfur",
+        "ok": true,
+        "detail": "sulfur=5.588 max 10 mg/kg, back-off 4.412, margin +6.007e-10",
+        "margin": 6.007248032346979e-10,
+        "hard": true
+      },
+      {
+        "kind": "severity",
+        "name": "S_sev",
+        "ok": true,
+        "detail": "S_sev=0.1302 <= 1"
+      }
+    ],
+    "out_of_declared_range": []
+  },
+  "confidence_block": {
+    "confidence": "high",
+    "sigma_pred_mgkg": 2.681,
+    "backoff_mgkg": 4.41,
+    "warnings": [
+      "the dominant severity contribution is AVT:F29 (0.130)"
+    ],
+    "data_quality": {
+      "lims_age_h": 4.0,
+      "P_eta": 0.13614886733741685,
+      "leverage": 0.3311802163625751,
+      "extrapolation": {
+        "available": true,
+        "mahalanobis2": 1.3247208654503004,
+        "dim": 4,
+        "threshold": 16.0,
+        "outside": false,
+        "per_dimension_z": [
+          -0.15130823070871302,
+          0.5979573485582493,
+          0.16025660842846218,
+          1.1162172854488102
+        ],
+        "capped": false,
+        "note": "distance of the operating point from the domain the kernel was identified on; the variance contribution is capped at 3 x sigma_resid^2"
+      },
+      "z": 1.6448536269514722,
+      "pak_stale": false,
+      "pak_outlier": false
+    }
+  },
+  "explanation": "Predicted product sulfur is 5.57 mg/kg; with the 4.41 mg/kg statistical back-off (eq 63 at 95% confidence) the constrained value is 9.98 against the 10 mg/kg hard limit. The offset anchored on the laboratory result contributes -2.72 mg/kg (eq 51); the physical kernel gives 8.07 and the identified residual +0.21. Against holding the regime it changes the objective by -0.0051 (throughput +0.009, energy proxy +0.002, severity +0.0000) and the forecast sulfur by +0.019 mg/kg while keeping every hard constraint satisfied. 6 of 8 evaluated moves satisfy every hard constraint; quality is never traded for throughput (§34). The effect is not immediate: the identified transport delay on HDS:F26 is 4.5 h, so the quality response begins only after that (eq 32-33), and the expected effect below is quoted for a move that is held.",
+  "alternatives": [
+    {
+      "name": "optimizer",
+      "feasible": true,
+      "du": {
+        "HDS:T5": 0.05081163047316295,
+        "HDS:P3": 4.440892098500626e-16,
+        "HDS:F26": 0.9324553188302502
+      },
+      "y_hat": {
+        "sulfur": 5.588230095368596,
+        "sulfur_with_backoff": 9.999999999399275
+      },
+      "metrics": {
+        "J": 1.4263269855189271,
+        "throughput_proxy": 2.7433531373945876,
+        "energy_proxy": 13.020385894108498,
+        "S_sev": 0.13016193396916947,
+        "p_violation": 0.049940825978307846,
+        "sulfur_margin": 6.007248032346979e-10,
+        "set_based_ok": false,
+        "blend": {
+          "fractions": {
+            "hydrotreated_diesel": 1.0,
+            "straight_run_diesel": 0.0
+          },
+          "blended_sulfur_mgkg": 5.588,
+          "sum_w": 1.0,
+          "note": "sulfur blends linearly in mass (eq 7); the straight-run component carries the measured HDS feed sulfur, so its admissible fraction is what the 10 mg/kg limit allows."
+        }
+      },
+      "explanation": "minimises J of eq 65 subject to the full constraint set C"
+    },
+    {
+      "name": "hold (no action)",
+      "feasible": true,
+      "du": {
+        "HDS:T5": 0.0,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 5.5691318291616065,
+        "sulfur_with_backoff": 9.980901733192287
+      },
+      "metrics": {
+        "J": 1.4313771844028222,
+        "throughput_proxy": 2.734529512936215,
+        "energy_proxy": 13.018609431335662,
+        "S_sev": 0.13016193396916947,
+        "p_violation": 0.049211179788994946,
+        "sulfur_margin": 0.019098266807713316,
+        "set_based_ok": false
+      },
+      "explanation": "keep the current regime unchanged"
+    },
+    {
+      "name": "decrease HDS:T5 by one rate-limited step",
+      "feasible": false,
+      "du": {
+        "HDS:T5": -1.4301349639892464,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 5.802419444345514,
+        "sulfur_with_backoff": 10.214189348376193
+      },
+      "metrics": {
+        "J": 1.5163771844028204,
+        "throughput_proxy": 2.734529512936215,
+        "energy_proxy": 12.968609431335661,
+        "S_sev": 0.13016193396916947,
+        "p_violation": 0.058727832026541554,
+        "sulfur_margin": -0.21418934837619297,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:T5"
+    },
+    {
+      "name": "increase HDS:P3 by one rate-limited step",
+      "feasible": true,
+      "du": {
+        "HDS:T5": 0.0,
+        "HDS:P3": 0.014411032140254854,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 5.5691318291616065,
+        "sulfur_with_backoff": 9.980901733192287
+      },
+      "metrics": {
+        "J": 1.5313771844028203,
+        "throughput_proxy": 2.734529512936215,
+        "energy_proxy": 13.018609431335662,
+        "S_sev": 0.13016193396916947,
+        "p_violation": 0.049211179788994946,
+        "sulfur_margin": 0.019098266807713316,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:P3"
+    }
+  ],
+  "trace": {
+    "quality_agent": {
+      "timestamp": "2026-07-12 14:00:00",
+      "y_hat": {
+        "sulfur": 5.5691318291616065,
+        "sulfur_kernel": 8.073204942486775,
+        "sulfur_residual": 0.21474334161726993,
+        "sulfur_offset": -2.7188164549424387
+      },
+      "sigma_pred": {
+        "sulfur": 2.6812299596693188
+      },
+      "eps_plus": {
+        "sulfur": 9.237085621729298
+      },
+      "p_violation": {
+        "sulfur": 0.049211179788994946
+      },
+      "backoff": {
+        "sulfur": 4.410230823853029
+      },
+      "sensitivities": {
+        "HDS:T5": -0.16312279683951658,
+        "HDS:F15": 0.0,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.029370631416531796,
+        "HDS:F2": 0.0,
+        "AVT:T55": 0.0,
+        "AVT:T20": 0.0,
+        "AVT:P67": 0.0,
+        "AVT:F29": 0.0
+      },
+      "grad_d": {
+        "feed_sulfur_mgkg": 1.1072514629617558e-06
+      },
+      "confidence": "high",
+      "horizon": {
+        "HDS:T5": {
+          "delay_h": 2.0,
+          "tau_h": 0.0,
+          "time_to_63pct_h": 2.1666666666666665,
+          "dS_per_unit_at_horizon": -0.16132261428294914,
+          "horizon_h": 7.0
+        },
+        "HDS:P3": {
+          "delay_h": 5.833333333333333,
+          "tau_h": 48.0,
+          "time_to_63pct_h": NaN,
+          "dS_per_unit_at_horizon": 0.0,
+          "horizon_h": 7.0
+        },
+        "HDS:F26": {
+          "delay_h": 4.5,
+          "tau_h": 0.0,
+          "time_to_63pct_h": 4.666666666666667,
+          "dS_per_unit_at_horizon": 0.029373191504316054,
+          "horizon_h": 7.0
+        }
+      },
+      "data_quality": {
+        "lims_age_h": 4.0,
+        "P_eta": 0.13614886733741685,
+        "leverage": 0.3311802163625751,
+        "extrapolation": {
+          "available": true,
+          "mahalanobis2": 1.3247208654503004,
+          "dim": 4,
+          "threshold": 16.0,
+          "outside": false,
+          "per_dimension_z": [
+            -0.15130823070871302,
+            0.5979573485582493,
+            0.16025660842846218,
+            1.1162172854488102
+          ],
+          "capped": false,
+          "note": "distance of the operating point from the domain the kernel was identified on; the variance contribution is capped at 3 x sigma_resid^2"
+        },
+        "z": 1.6448536269514722,
+        "pak_stale": false,
+        "pak_outlier": false
+      },
+      "sources": [],
+      "notes": []
+    },
+    "reliability_agent": {
+      "timestamp": "2026-07-12 14:00:00",
+      "severity": 0.13016193396916947,
+      "severity_class": "normal",
+      "contributions": {
+        "HDS:W10": 0.0,
+        "AVT:T55": 0.0,
+        "HDS:T5": 0.0,
+        "HDS:F26": 0.0,
+        "AVT:F29": 0.13016193396916947
+      },
+      "deactivation": {
+        "slope_c_per_1000h": -0.5158960818316968,
+        "p_value": 1.6321279119881092e-42,
+        "n": 979.0,
+        "span_h": 21864.0,
+        "significant": false,
+        "status": "[DOP, hypothesis]",
+        "note": "Normalised-temperature drift (eq 62). This is an offset hypothesis (eq 47), NOT a measured catalyst activity.",
+        "available": true,
+        "normalisation_r2": 0.3091513462924421
+      },
+      "bound_overrides": {},
+      "notes": [
+        "the dominant severity contribution is AVT:F29 (0.130)"
+      ]
+    },
+    "optimization_agent": {
+      "status": "optimal",
+      "solver": "cvxpy",
+      "reason": "",
+      "out_of_range": [],
+      "scenarios": [
+        {
+          "name": "optimizer",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 0.05081163047316295,
+            "HDS:P3": 4.440892098500626e-16,
+            "HDS:F26": 0.9324553188302502
+          },
+          "y_hat": {
+            "sulfur": 5.588230095368596,
+            "sulfur_with_backoff": 9.999999999399275
+          },
+          "metrics": {
+            "J": 1.4263269855189271,
+            "throughput_proxy": 2.7433531373945876,
+            "energy_proxy": 13.020385894108498,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.049940825978307846,
+            "sulfur_margin": 6.007248032346979e-10,
+            "set_based_ok": false,
+            "blend": {
+              "fractions": {
+                "hydrotreated_diesel": 1.0,
+                "straight_run_diesel": 0.0
+              },
+              "blended_sulfur_mgkg": 5.588,
+              "sum_w": 1.0,
+              "note": "sulfur blends linearly in mass (eq 7); the straight-run component carries the measured HDS feed sulfur, so its admissible fraction is what the 10 mg/kg limit allows."
+            }
+          },
+          "explanation": "minimises J of eq 65 subject to the full constraint set C"
+        },
+        {
+          "name": "hold (no action)",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 5.5691318291616065,
+            "sulfur_with_backoff": 9.980901733192287
+          },
+          "metrics": {
+            "J": 1.4313771844028222,
+            "throughput_proxy": 2.734529512936215,
+            "energy_proxy": 13.018609431335662,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.049211179788994946,
+            "sulfur_margin": 0.019098266807713316,
+            "set_based_ok": false
+          },
+          "explanation": "keep the current regime unchanged"
+        },
+        {
+          "name": "increase HDS:T5 by one rate-limited step",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 1.4301349639892464,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 5.335844213977699,
+            "sulfur_with_backoff": 9.747614118008379
+          },
+          "metrics": {
+            "J": 1.5463771844028202,
+            "throughput_proxy": 2.734529512936215,
+            "energy_proxy": 13.06860943133566,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.040968304867123696,
+            "sulfur_margin": 0.2523858819916214,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:T5"
+        },
+        {
+          "name": "decrease HDS:T5 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": -1.4301349639892464,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 5.802419444345514,
+            "sulfur_with_backoff": 10.214189348376193
+          },
+          "metrics": {
+            "J": 1.5163771844028204,
+            "throughput_proxy": 2.734529512936215,
+            "energy_proxy": 12.968609431335661,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.058727832026541554,
+            "sulfur_margin": -0.21418934837619297,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:T5"
+        },
+        {
+          "name": "increase HDS:P3 by one rate-limited step",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.014411032140254854,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 5.5691318291616065,
+            "sulfur_with_backoff": 9.980901733192287
+          },
+          "metrics": {
+            "J": 1.5313771844028203,
+            "throughput_proxy": 2.734529512936215,
+            "energy_proxy": 13.018609431335662,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.049211179788994946,
+            "sulfur_margin": 0.019098266807713316,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:P3"
+        },
+        {
+          "name": "decrease HDS:P3 by one rate-limited step",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": -0.014411032140254854,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 5.5691318291616065,
+            "sulfur_with_backoff": 9.980901733192287
+          },
+          "metrics": {
+            "J": 1.5313771844028203,
+            "throughput_proxy": 2.734529512936215,
+            "energy_proxy": 13.018609431335662,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.049211179788994946,
+            "sulfur_margin": 0.019098266807713316,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:P3"
+        },
+        {
+          "name": "increase HDS:F26 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": 4.029378662109366
+          },
+          "y_hat": {
+            "sulfur": 5.687477224684058,
+            "sulfur_with_backoff": 10.099247128714737
+          },
+          "metrics": {
+            "J": 1.4514013074661285,
+            "throughput_proxy": 2.7726586579977006,
+            "energy_proxy": 13.018609431335662,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.0538724740082666,
+            "sulfur_margin": -0.09924712871473673,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:F26"
+        },
+        {
+          "name": "decrease HDS:F26 by one rate-limited step",
+          "feasible": true,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": -5.283856555938712
+          },
+          "y_hat": {
+            "sulfur": 5.413941625799305,
+            "sulfur_with_backoff": 9.825711529829984
+          },
+          "metrics": {
+            "J": 1.5813771844028217,
+            "throughput_proxy": 2.6845295129362152,
+            "energy_proxy": 13.018609431335662,
+            "S_sev": 0.13016193396916947,
+            "p_violation": 0.04359311741029624,
+            "sulfur_margin": 0.17428847017001559,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:F26"
+        }
+      ],
+      "pareto_indices": [
+        0,
+        1,
+        3,
+        4
+      ]
+    }
+  }
+}

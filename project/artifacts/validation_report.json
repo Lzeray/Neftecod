@@ -1,0 +1,232 @@
+{
+  "split": {
+    "n_train": 131328,
+    "n_test": 57889,
+    "train_range": [
+      "2023-01-01 00:00:00",
+      "2025-06-30 23:50:00"
+    ],
+    "test_range": [
+      "2025-07-01 00:00:00",
+      "2026-08-07 00:00:00"
+    ]
+  },
+  "n_test_lab_results": 468,
+  "one_step": {
+    "model_kernel_residual_offset": {
+      "n": 468,
+      "MAE": 2.2538284821036685,
+      "MAE_se": 0.28167908786247686,
+      "RMSE": 6.490991797442975,
+      "Bias": -0.2412833112042895
+    },
+    "kernel_plus_residual_only": {
+      "n": 468,
+      "MAE": 2.702269017789677,
+      "MAE_se": 0.2746876403011475,
+      "RMSE": 6.522188959266918,
+      "Bias": 0.6813928446207372
+    },
+    "persistence_eq69": {
+      "n": 468,
+      "MAE": 2.3034187728523188,
+      "MAE_se": 0.3153450443111221,
+      "RMSE": 7.193426452592534,
+      "Bias": 0.01794871866193592
+    },
+    "train_median_constant": {
+      "n": 468,
+      "MAE": 1.79978630787287,
+      "MAE_se": 0.26166283818412506,
+      "RMSE": 5.934098553953718,
+      "Bias": 0.48183759359213024
+    },
+    "skill_vs_persistence": 0.02152899478510495,
+    "skill_vs_constant": -0.2522756019671144,
+    "paired_vs_persistence": {
+      "n": 468,
+      "diff_MAE": -0.049590290748650866,
+      "se": 0.18278513094218818,
+      "t": -0.2713037460598227,
+      "significant": false,
+      "note": "negative means the first predictor has the lower MAE"
+    },
+    "paired_vs_constant": {
+      "n": 468,
+      "diff_MAE": 0.45404217423079807,
+      "se": 0.11881345739653931,
+      "t": 3.8214709358674295,
+      "significant": true,
+      "note": "negative means the first predictor has the lower MAE"
+    }
+  },
+  "multi_step": {
+    "1": {
+      "n": 468,
+      "MAE": 2.086637142531395,
+      "MAE_se": 0.21135613533567035,
+      "RMSE": 5.021514294558335,
+      "Bias": -0.2442449712592673,
+      "MAE_persistence": 2.3034187728523188,
+      "RMSE_persistence": 7.193426452592534,
+      "skill_MAE": 0.09411299103570447
+    },
+    "2": {
+      "n": 468,
+      "MAE": 2.1641735648719216,
+      "MAE_se": 0.2633393546227927,
+      "RMSE": 6.088430318858138,
+      "Bias": -0.24419938155592658,
+      "MAE_persistence": 2.6307692265886273,
+      "RMSE_persistence": 8.520377793865096,
+      "skill_MAE": 0.1773609243262093
+    },
+    "4": {
+      "n": 468,
+      "MAE": 2.298139739707778,
+      "MAE_se": 0.28255639865759635,
+      "RMSE": 6.524250728356616,
+      "Bias": -0.22895020737937172,
+      "MAE_persistence": 2.70299142667562,
+      "RMSE_persistence": 8.382585215875975,
+      "skill_MAE": 0.14977912359336065
+    },
+    "8": {
+      "n": 468,
+      "MAE": 2.2658196685193417,
+      "MAE_se": 0.2692805078666754,
+      "RMSE": 6.244760923803055,
+      "Bias": -0.21312435262082216,
+      "MAE_persistence": 2.6888888765317507,
+      "RMSE_persistence": 8.526193923819042,
+      "skill_MAE": 0.15733978882686395
+    }
+  },
+  "coverage": {
+    "two_sided": {
+      "n": 468,
+      "coverage": 0.9423076923076923,
+      "target": 0.95,
+      "z": 1.959963984540054,
+      "mean_width": 11.833401672521955,
+      "honest": true
+    },
+    "one_sided_eq63": {
+      "n": 468,
+      "coverage": 0.9807692307692307,
+      "target": 0.95,
+      "z": 1.6448536269514722
+    },
+    "sigma_mean": 3.018780387257704
+  },
+  "spec_violations": {
+    "with_backoff": {
+      "n": 468,
+      "TP": 79,
+      "FP": 386,
+      "FN": 1,
+      "TN": 2,
+      "missed_rate": 0.0125,
+      "false_alarm_rate": 0.9948453608247423,
+      "actual_violations": 80
+    },
+    "without_backoff": {
+      "n": 468,
+      "TP": 20,
+      "FP": 51,
+      "FN": 60,
+      "TN": 337,
+      "missed_rate": 0.75,
+      "false_alarm_rate": 0.13144329896907217,
+      "actual_violations": 80
+    },
+    "actual_rate": 0.17094017094017094,
+    "note": "the historical process itself exceeds the 10 mg/kg limit in a non-negligible fraction of the laboratory results"
+  },
+  "step_response": {
+    "available": true,
+    "timestamp": "2024-10-25 13:30:00",
+    "dS_dT5_mgkg_per_C": -0.2079637337762167,
+    "horizon_response": {
+      "available": true,
+      "channel": "HDS:T5",
+      "kernel_input": "T_WABT",
+      "delay_h": 2.0,
+      "tau_h": 0.0,
+      "y0_mgkg": 10.102520865913698,
+      "trajectory_mgkg": [
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        10.102520865913698,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202,
+        9.896892296863202
+      ],
+      "delta_at_horizon_mgkg": -0.20562856905049642,
+      "horizon_h": 7.0,
+      "time_to_63pct_h": 2.1666666666666665,
+      "note": "effect of holding the move; the quality response is delayed by the identified transport time (eq 32-33)"
+    },
+    "sign_ok": true,
+    "note": "the deployed temperature sensitivity must be negative (eq 13-15); it comes from the kernel, since the residual gain on this channel is sign-clipped to zero."
+  },
+  "action_distribution": {
+    "available": true,
+    "n_sampled": 302,
+    "sampling": "every 179th operating sample of the test window",
+    "counts": {
+      "mitigate": 287,
+      "refuse": 15
+    },
+    "fractions": {
+      "mitigate": 0.9503,
+      "refuse": 0.0497
+    },
+    "note": "'recommend'/'hold' means the 10 mg/kg chance constraint is satisfiable; 'mitigate' means C is empty and only risk reduction is offered; 'refuse' means eq 66 blocks any advice."
+  },
+  "honesty_notes": [
+    "one-step MAE is 2.254 +- 0.282 mg/kg (standard error on 468 held-out laboratory results); differences smaller than about 0.6 mg/kg between candidate models are not distinguishable on this sample",
+    "against the persistence baseline of eq 69 (2.303 mg/kg) the paired MAE difference is -0.050 +- 0.183 mg/kg -- lower on average but NOT statistically distinguishable from no difference",
+    "the model is beaten by a constant at the training median by 0.454 +- 0.119 mg/kg (paired, significant)",
+    "the product sulfur of this unit is close to white noise around a slowly moving level: most of the achievable skill is in the level, which the LIMS-anchored offset supplies, not in the telemetry",
+    "the one-sided bound used by eq 63 covers 98.1% of the held-out results against the 95% it claims -- honest",
+    "the inner-split selection shrank the data-driven residual to zero: on held-out rows the fitted telemetry gains did not improve the forecast, so the deployed predictor is the physical kernel plus the LIMS-anchored offset only (eq 55 with r_psi = 0)",
+    "the same search rejected the stream sulfur analyser as an anchor: its correlation with the laboratory result is ~0.2 at best, and letting it move the offset made the forecast worse"
+  ]
+}

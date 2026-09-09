@@ -1,0 +1,592 @@
+{
+  "timestamp": "2026-04-27 09:00:00",
+  "action": "refuse",
+  "headline": "No reliable recommendation",
+  "state_block": {
+    "timestamp": "2026-04-27 09:00:00",
+    "key_parameters": {
+      "HDS:T5": 322.5759,
+      "HDS:F15": 3017.6011,
+      "HDS:P3": 3.8033,
+      "HDS:F26": 182.0757,
+      "HDS:F2": 108170.5625,
+      "AVT:T55": 382.4163,
+      "AVT:T20": 113.8671,
+      "AVT:P67": 1.1053,
+      "AVT:F29": 8.0952
+    },
+    "derived": {
+      "derived:crude_charge_tph": 681.3017,
+      "derived:T_WABT_C": 321.7073,
+      "derived:LHSV_rel": 0.7106,
+      "derived:pH2_proxy_MPa": 3.0427,
+      "derived:operating": 1.0,
+      "feed_sulfur_mgkg": 8326.0
+    },
+    "freshness_h": {
+      "LIMS:sulfur": 311.0,
+      "PAK:sulfur": 0.0,
+      "LIMSFEED:sulfur": 23.0
+    },
+    "flags": {
+      "PAK:sulfur__stale": false,
+      "PAK:D15__stale": false,
+      "PAK:sulfur__outlier": false,
+      "LIMS:sulfur__missing": false
+    }
+  },
+  "risk_block": {
+    "sulfur_forecast_mgkg": 28.904,
+    "chance_constrained_value_mgkg": 38.888,
+    "limit_mgkg": 10.0,
+    "p_violation": 0.9991,
+    "set_based_bound_mgkg": 9.237,
+    "severity": 0.0,
+    "severity_class": "normal",
+    "severity_factors": {
+      "HDS:W10": 0.0,
+      "AVT:T55": 0.0,
+      "HDS:T5": 0.0,
+      "HDS:F26": 0.0,
+      "AVT:F29": 0.0
+    },
+    "deactivation_hypothesis": {
+      "slope_c_per_1000h": -0.5158960818316968,
+      "p_value": 1.6321279119881092e-42,
+      "n": 979.0,
+      "span_h": 21864.0,
+      "significant": false,
+      "status": "[DOP, hypothesis]",
+      "note": "Normalised-temperature drift (eq 62). This is an offset hypothesis (eq 47), NOT a measured catalyst activity.",
+      "available": true,
+      "normalisation_r2": 0.3091513462924421
+    }
+  },
+  "action_block": {
+    "changes": [],
+    "reason_no_action": "data freshness (eq 53-54): the last laboratory sulfur result is 311.0 h old, above the 72 h limit, and the stream analyser cannot stand in: the inner-split search found that letting the stream analyser move the offset made the forecast worse (its correlation with the laboratory result is ~0.2 at best); confidence (eq 58): sigma_pred = 6.07 mg/kg exceeds the 4.00 mg/kg threshold; extrapolation: the operating point is outside the domain the kernel was identified on (Mahalanobis d^2 = 23.0 vs threshold 16); the kinetic sensitivity used to build the advice is not supported by data here"
+  },
+  "effect_block": {},
+  "constraint_block": {
+    "gate_eq66": [
+      "data freshness (eq 53-54): the last laboratory sulfur result is 311.0 h old, above the 72 h limit, and the stream analyser cannot stand in: the inner-split search found that letting the stream analyser move the offset made the forecast worse (its correlation with the laboratory result is ~0.2 at best)",
+      "confidence (eq 58): sigma_pred = 6.07 mg/kg exceeds the 4.00 mg/kg threshold",
+      "extrapolation: the operating point is outside the domain the kernel was identified on (Mahalanobis d^2 = 23.0 vs threshold 16); the kinetic sensitivity used to build the advice is not supported by data here"
+    ],
+    "passed": false
+  },
+  "confidence_block": {
+    "confidence": "low",
+    "sigma_pred_mgkg": 6.07,
+    "backoff_mgkg": 9.984,
+    "warnings": [
+      "the operating point is outside the domain the kernel was identified on (Mahalanobis d^2 = 23.0 vs threshold 16); the largest deviation is T_WABT at -4.7 sigma",
+      "the last laboratory sulfur result is 311.0 h old (limit 72 h)",
+      "sigma_pred=6.07 mg/kg exceeds the confidence threshold 4.00",
+      "the dominant severity contribution is HDS:W10 (0.000)"
+    ],
+    "data_quality": {
+      "lims_age_h": 311.0,
+      "P_eta": 0.7013526673767583,
+      "leverage": 3.0,
+      "extrapolation": {
+        "available": true,
+        "mahalanobis2": 23.044552339294828,
+        "dim": 4,
+        "threshold": 16.0,
+        "outside": true,
+        "per_dimension_z": [
+          -1.3126874586440591,
+          -4.679201653709499,
+          -1.4446320384338234,
+          -1.7772517501005698
+        ],
+        "capped": true,
+        "note": "distance of the operating point from the domain the kernel was identified on; the variance contribution is capped at 3 x sigma_resid^2"
+      },
+      "z": 1.6448536269514722,
+      "pak_stale": false,
+      "pak_outlier": false
+    }
+  },
+  "explanation": "No reliable recommendation can be issued: data freshness (eq 53-54): the last laboratory sulfur result is 311.0 h old, above the 72 h limit, and the stream analyser cannot stand in: the inner-split search found that letting the stream analyser move the offset made the forecast worse (its correlation with the laboratory result is ~0.2 at best); confidence (eq 58): sigma_pred = 6.07 mg/kg exceeds the 4.00 mg/kg threshold; extrapolation: the operating point is outside the domain the kernel was identified on (Mahalanobis d^2 = 23.0 vs threshold 16); the kinetic sensitivity used to build the advice is not supported by data here. The model still reports its best estimate of 28.90 mg/kg with sigma_pred = 6.07 mg/kg, but the decision rule of eq 66 forbids acting on it.",
+  "alternatives": [
+    {
+      "name": "minimum-violation",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 1.4301349605040627,
+        "HDS:P3": -0.00022300995340618357,
+        "HDS:F26": 5.8061857544089435e-09
+      },
+      "y_hat": {
+        "sulfur": 28.019005893612665,
+        "sulfur_with_backoff": 38.02128707760945
+      },
+      "metrics": {
+        "J": 1.7754240324790942,
+        "throughput_proxy": 1.7229435304340517,
+        "energy_proxy": 11.327812053343957,
+        "S_sev": 0.0,
+        "p_violation": 0.9985042286179204,
+        "sulfur_margin": -28.02128707760945,
+        "set_based_ok": false,
+        "achievable_confidence": 0.0014957713820795986,
+        "residual_violation_mgkg": 28.02128707760943
+      },
+      "explanation": "lexicographic stage 1 of eq 65: the constraint set C is empty at the required confidence, so this is the move that reduces the specification violation the most. It does NOT certify the 10 mg/kg limit: the attainable confidence is 0.1% against the required 95%."
+    },
+    {
+      "name": "hold (no action)",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 0.0,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 28.903541397326926,
+        "sulfur_with_backoff": 38.90582258132371
+      },
+      "metrics": {
+        "J": 1.6604000856606325,
+        "throughput_proxy": 1.722943530379109,
+        "energy_proxy": 11.277812053465805,
+        "S_sev": 0.0,
+        "p_violation": 0.9990781891305324,
+        "sulfur_margin": -28.90582258132371,
+        "set_based_ok": false
+      },
+      "explanation": "keep the current regime unchanged"
+    },
+    {
+      "name": "increase HDS:T5 by one rate-limited step",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 31.56567337036131,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 9.380237937590639,
+        "sulfur_with_backoff": 19.38251912158743
+      },
+      "metrics": {
+        "J": 50.70797601535381,
+        "throughput_proxy": 1.722943530379109,
+        "energy_proxy": 12.381402769208854,
+        "S_sev": 0.0,
+        "p_violation": 0.45933669827212165,
+        "sulfur_margin": -9.382519121587428,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:T5"
+    },
+    {
+      "name": "decrease HDS:T5 by one rate-limited step",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 31.56567337036131,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 9.380237937590639,
+        "sulfur_with_backoff": 19.38251912158743
+      },
+      "metrics": {
+        "J": 50.70797601535381,
+        "throughput_proxy": 1.722943530379109,
+        "energy_proxy": 12.381402769208854,
+        "S_sev": 0.0,
+        "p_violation": 0.45933669827212165,
+        "sulfur_margin": -9.382519121587428,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:T5"
+    },
+    {
+      "name": "increase HDS:P3 by one rate-limited step",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 0.0,
+        "HDS:P3": -0.019716485738753953,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 28.903541397326926,
+        "sulfur_with_backoff": 38.90582258132371
+      },
+      "metrics": {
+        "J": 1.847584137716071,
+        "throughput_proxy": 1.722943530379109,
+        "energy_proxy": 11.277812053465805,
+        "S_sev": 0.0,
+        "p_violation": 0.9990781891305324,
+        "sulfur_margin": -28.90582258132371,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:P3"
+    },
+    {
+      "name": "decrease HDS:P3 by one rate-limited step",
+      "feasible": false,
+      "du": {
+        "HDS:T5": 0.0,
+        "HDS:P3": -0.019716485738753953,
+        "HDS:F26": 0.0
+      },
+      "y_hat": {
+        "sulfur": 28.903541397326926,
+        "sulfur_with_backoff": 38.90582258132371
+      },
+      "metrics": {
+        "J": 1.847584137716071,
+        "throughput_proxy": 1.722943530379109,
+        "energy_proxy": 11.277812053465805,
+        "S_sev": 0.0,
+        "p_violation": 0.9990781891305324,
+        "sulfur_margin": -28.90582258132371,
+        "set_based_ok": false
+      },
+      "explanation": "single-channel move on HDS:P3"
+    }
+  ],
+  "trace": {
+    "quality_agent": {
+      "timestamp": "2026-04-27 09:00:00",
+      "y_hat": {
+        "sulfur": 28.903541397326926,
+        "sulfur_kernel": 26.125931526661958,
+        "sulfur_residual": 0.21474334161726993,
+        "sulfur_offset": 2.5628665290476946
+      },
+      "sigma_pred": {
+        "sulfur": 6.06985508488763
+      },
+      "eps_plus": {
+        "sulfur": 9.237085621729298
+      },
+      "p_violation": {
+        "sulfur": 0.9990781891305324
+      },
+      "backoff": {
+        "sulfur": 9.984023151447253
+      },
+      "sensitivities": {
+        "HDS:T5": -0.6184979243328215,
+        "HDS:F15": 0.0,
+        "HDS:P3": 0.0,
+        "HDS:F26": 0.15040893236982117,
+        "HDS:F2": 0.0,
+        "AVT:T55": 0.0,
+        "AVT:T20": 0.0,
+        "AVT:P67": 0.0,
+        "AVT:F29": 0.0
+      },
+      "grad_d": {
+        "feed_sulfur_mgkg": 1.3135269718134168e-05
+      },
+      "confidence": "low",
+      "horizon": {
+        "HDS:T5": {
+          "delay_h": 2.0,
+          "tau_h": 0.0,
+          "time_to_63pct_h": 2.1666666666666665,
+          "dS_per_unit_at_horizon": -0.6105858607049406,
+          "horizon_h": 7.0
+        },
+        "HDS:P3": {
+          "delay_h": 5.833333333333333,
+          "tau_h": 48.0,
+          "time_to_63pct_h": NaN,
+          "dS_per_unit_at_horizon": 0.0,
+          "horizon_h": 7.0
+        },
+        "HDS:F26": {
+          "delay_h": 4.5,
+          "tau_h": 0.0,
+          "time_to_63pct_h": 4.666666666666667,
+          "dS_per_unit_at_horizon": 0.15042732699301808,
+          "horizon_h": 7.0
+        }
+      },
+      "data_quality": {
+        "lims_age_h": 311.0,
+        "P_eta": 0.7013526673767583,
+        "leverage": 3.0,
+        "extrapolation": {
+          "available": true,
+          "mahalanobis2": 23.044552339294828,
+          "dim": 4,
+          "threshold": 16.0,
+          "outside": true,
+          "per_dimension_z": [
+            -1.3126874586440591,
+            -4.679201653709499,
+            -1.4446320384338234,
+            -1.7772517501005698
+          ],
+          "capped": true,
+          "note": "distance of the operating point from the domain the kernel was identified on; the variance contribution is capped at 3 x sigma_resid^2"
+        },
+        "z": 1.6448536269514722,
+        "pak_stale": false,
+        "pak_outlier": false
+      },
+      "sources": [],
+      "notes": [
+        "the operating point is outside the domain the kernel was identified on (Mahalanobis d^2 = 23.0 vs threshold 16); the largest deviation is T_WABT at -4.7 sigma",
+        "the last laboratory sulfur result is 311.0 h old (limit 72 h)",
+        "sigma_pred=6.07 mg/kg exceeds the confidence threshold 4.00"
+      ]
+    },
+    "reliability_agent": {
+      "timestamp": "2026-04-27 09:00:00",
+      "severity": 0.0,
+      "severity_class": "normal",
+      "contributions": {
+        "HDS:W10": 0.0,
+        "AVT:T55": 0.0,
+        "HDS:T5": 0.0,
+        "HDS:F26": 0.0,
+        "AVT:F29": 0.0
+      },
+      "deactivation": {
+        "slope_c_per_1000h": -0.5158960818316968,
+        "p_value": 1.6321279119881092e-42,
+        "n": 979.0,
+        "span_h": 21864.0,
+        "significant": false,
+        "status": "[DOP, hypothesis]",
+        "note": "Normalised-temperature drift (eq 62). This is an offset hypothesis (eq 47), NOT a measured catalyst activity.",
+        "available": true,
+        "normalisation_r2": 0.3091513462924421
+      },
+      "bound_overrides": {},
+      "notes": [
+        "the dominant severity contribution is HDS:W10 (0.000)"
+      ]
+    },
+    "optimization_agent": {
+      "status": "mitigate",
+      "solver": "cvxpy",
+      "reason": "no (u, w) satisfies C at the required confidence 1-alpha = 0.95 | lexicographic stage 1 of eq 65: the constraint set C is empty at the required confidence, so this is the move that reduces the specification violation the most. It does NOT certify the 10 mg/kg limit: the attainable confidence is 0.1% against the required 95%.",
+      "out_of_range": [
+        {
+          "tag": "HDS:T5",
+          "value": 322.57586669921875,
+          "lo": 354.14154006958006,
+          "hi": 382.7442393493652,
+          "status": "[DOP]",
+          "note": "the plant is operating outside the declared [DOP] model range; the optimiser may only move towards it at the rate limit"
+        },
+        {
+          "tag": "HDS:P3",
+          "value": 3.803345441818237,
+          "lo": 3.495408313274383,
+          "hi": 3.783628956079483,
+          "status": "[DOP]",
+          "note": "the plant is operating outside the declared [DOP] model range; the optimiser may only move towards it at the rate limit"
+        },
+        {
+          "tag": "HDS:F26",
+          "value": 182.0757293701172,
+          "lo": 187.3294814300537,
+          "hi": 293.0066125488281,
+          "status": "[DOP]",
+          "note": "the plant is operating outside the declared [DOP] model range; the optimiser may only move towards it at the rate limit"
+        }
+      ],
+      "scenarios": [
+        {
+          "name": "minimum-violation",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 1.4301349605040627,
+            "HDS:P3": -0.00022300995340618357,
+            "HDS:F26": 5.8061857544089435e-09
+          },
+          "y_hat": {
+            "sulfur": 28.019005893612665,
+            "sulfur_with_backoff": 38.02128707760945
+          },
+          "metrics": {
+            "J": 1.7754240324790942,
+            "throughput_proxy": 1.7229435304340517,
+            "energy_proxy": 11.327812053343957,
+            "S_sev": 0.0,
+            "p_violation": 0.9985042286179204,
+            "sulfur_margin": -28.02128707760945,
+            "set_based_ok": false,
+            "achievable_confidence": 0.0014957713820795986,
+            "residual_violation_mgkg": 28.02128707760943
+          },
+          "explanation": "lexicographic stage 1 of eq 65: the constraint set C is empty at the required confidence, so this is the move that reduces the specification violation the most. It does NOT certify the 10 mg/kg limit: the attainable confidence is 0.1% against the required 95%."
+        },
+        {
+          "name": "hold (no action)",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 28.903541397326926,
+            "sulfur_with_backoff": 38.90582258132371
+          },
+          "metrics": {
+            "J": 1.6604000856606325,
+            "throughput_proxy": 1.722943530379109,
+            "energy_proxy": 11.277812053465805,
+            "S_sev": 0.0,
+            "p_violation": 0.9990781891305324,
+            "sulfur_margin": -28.90582258132371,
+            "set_based_ok": false
+          },
+          "explanation": "keep the current regime unchanged"
+        },
+        {
+          "name": "increase HDS:T5 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 31.56567337036131,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 9.380237937590639,
+            "sulfur_with_backoff": 19.38251912158743
+          },
+          "metrics": {
+            "J": 50.70797601535381,
+            "throughput_proxy": 1.722943530379109,
+            "energy_proxy": 12.381402769208854,
+            "S_sev": 0.0,
+            "p_violation": 0.45933669827212165,
+            "sulfur_margin": -9.382519121587428,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:T5"
+        },
+        {
+          "name": "decrease HDS:T5 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 31.56567337036131,
+            "HDS:P3": 0.0,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 9.380237937590639,
+            "sulfur_with_backoff": 19.38251912158743
+          },
+          "metrics": {
+            "J": 50.70797601535381,
+            "throughput_proxy": 1.722943530379109,
+            "energy_proxy": 12.381402769208854,
+            "S_sev": 0.0,
+            "p_violation": 0.45933669827212165,
+            "sulfur_margin": -9.382519121587428,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:T5"
+        },
+        {
+          "name": "increase HDS:P3 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": -0.019716485738753953,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 28.903541397326926,
+            "sulfur_with_backoff": 38.90582258132371
+          },
+          "metrics": {
+            "J": 1.847584137716071,
+            "throughput_proxy": 1.722943530379109,
+            "energy_proxy": 11.277812053465805,
+            "S_sev": 0.0,
+            "p_violation": 0.9990781891305324,
+            "sulfur_margin": -28.90582258132371,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:P3"
+        },
+        {
+          "name": "decrease HDS:P3 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": -0.019716485738753953,
+            "HDS:F26": 0.0
+          },
+          "y_hat": {
+            "sulfur": 28.903541397326926,
+            "sulfur_with_backoff": 38.90582258132371
+          },
+          "metrics": {
+            "J": 1.847584137716071,
+            "throughput_proxy": 1.722943530379109,
+            "energy_proxy": 11.277812053465805,
+            "S_sev": 0.0,
+            "p_violation": 0.9990781891305324,
+            "sulfur_margin": -28.90582258132371,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:P3"
+        },
+        {
+          "name": "increase HDS:F26 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": 5.283856555938712
+          },
+          "y_hat": {
+            "sulfur": 29.69828062070095,
+            "sulfur_with_backoff": 39.700561804697735
+          },
+          "metrics": {
+            "J": 1.7104000856606323,
+            "throughput_proxy": 1.7729435303791088,
+            "energy_proxy": 11.277812053465805,
+            "S_sev": 0.0,
+            "p_violation": 0.9994132905527142,
+            "sulfur_margin": -29.700561804697735,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:F26"
+        },
+        {
+          "name": "decrease HDS:F26 by one rate-limited step",
+          "feasible": false,
+          "du": {
+            "HDS:T5": 0.0,
+            "HDS:P3": 0.0,
+            "HDS:F26": 5.253752059936517
+          },
+          "y_hat": {
+            "sulfur": 29.693752635597725,
+            "sulfur_with_backoff": 39.69603381959451
+          },
+          "metrics": {
+            "J": 1.7095487146073551,
+            "throughput_proxy": 1.7726586579977006,
+            "energy_proxy": 11.277812053465805,
+            "S_sev": 0.0,
+            "p_violation": 0.9994117516012885,
+            "sulfur_margin": -29.69603381959451,
+            "set_based_ok": false
+          },
+          "explanation": "single-channel move on HDS:F26"
+        }
+      ],
+      "pareto_indices": []
+    }
+  }
+}

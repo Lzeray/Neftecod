@@ -1,0 +1,116 @@
+{
+  "24-2000:GODT:D15": {
+    "binding": {
+      "LIMS_24_2000_Pipeline_D15": "LIMSPREV:D15"
+    },
+    "offset": -0.49360109649660444,
+    "n_train": 838,
+    "n_test": 173,
+    "MAE": 1.95323439166471,
+    "RMSE": 3.115126468957621,
+    "Bias": 0.4986412593758258,
+    "MAE_median_baseline": 2.197108979859104,
+    "skill": 0.11099794795342077,
+    "usable": true,
+    "min_skill": 0.02,
+    "reason": "beats the training-median baseline by 11.1% MAE",
+    "quality": "D15"
+  },
+  "24-2000:GODT:T95": {
+    "binding": {
+      "LIMS_24_2000_Pipeline_95_T": "LIMSPREV:T95"
+    },
+    "offset": -43.659875610961876,
+    "n_train": 899,
+    "n_test": 388,
+    "MAE": 6.158406126864718,
+    "RMSE": 7.940754137156939,
+    "Bias": -0.0017706144604416748,
+    "MAE_median_baseline": 5.868556701030927,
+    "skill": -0.04939024032653094,
+    "usable": false,
+    "min_skill": 0.02,
+    "reason": "does not beat the training-median baseline on held-out LIMS by the required 2%",
+    "quality": "T95"
+  },
+  "24-2000:GODT:T50": {
+    "binding": null,
+    "offset": -116.8794652912903,
+    "n_train": 900,
+    "n_test": 349,
+    "MAE": 6.803758824970061,
+    "RMSE": 8.825626135614362,
+    "Bias": -0.5738601240395099,
+    "MAE_median_baseline": 3.4469914040114613,
+    "skill": -0.9738252950245647,
+    "usable": false,
+    "min_skill": 0.02,
+    "reason": "does not beat the training-median baseline on held-out LIMS by the required 2%",
+    "quality": "T50"
+  },
+  "24-2000:GODT:T90": {
+    "binding": null,
+    "offset": -202187.9382291337,
+    "n_train": 849,
+    "n_test": 349,
+    "MAE": 6988.76664281953,
+    "RMSE": 8228.583297258268,
+    "Bias": -1763.1791573636035,
+    "MAE_median_baseline": 4.833810888252149,
+    "skill": -1444.8088668310704,
+    "usable": false,
+    "min_skill": 0.02,
+    "reason": "does not beat the training-median baseline on held-out LIMS by the required 2%",
+    "quality": "T90"
+  },
+  "24-2000:GODT:CFPP": {
+    "binding": null,
+    "offset": -16.454992356739943,
+    "n_train": 274,
+    "n_test": 140,
+    "MAE": 1.969077941163232,
+    "RMSE": 2.889723231555469,
+    "Bias": -0.07116542281283367,
+    "MAE_median_baseline": 1.4785714285714286,
+    "skill": -0.3317435350862439,
+    "usable": false,
+    "min_skill": 0.02,
+    "reason": "does not beat the training-median baseline on held-out LIMS by the required 2%",
+    "quality": "CFPP"
+  },
+  "24-2000:GODT:CloudPoint": {
+    "usable": false,
+    "reason": "[DOP] Source text ends with a dangling `+0.00011` (no operand) and the leading term `F22` carries an implicit coefficient of 1 although F22 is a ~1e4-magnitude flow; the expression is truncated in the workbook. Disabled -- the residual model carries CloudPoint instead.",
+    "quality": "CloudPoint"
+  },
+  "24-2000:GODT:IBP": {
+    "binding": null,
+    "offset": -4.0373095962143,
+    "n_train": 899,
+    "n_test": 388,
+    "MAE": 4.204496943288052,
+    "RMSE": 6.002388795944972,
+    "Bias": -0.16811998550102122,
+    "MAE_median_baseline": 4.716494845360825,
+    "skill": 0.10855474645040208,
+    "usable": true,
+    "min_skill": 0.02,
+    "reason": "beats the training-median baseline by 10.9% MAE",
+    "quality": "IBP"
+  },
+  "24-2000:GODT:I250": {
+    "binding": null,
+    "offset": 3.0078392660904,
+    "n_train": 895,
+    "n_test": 383,
+    "MAE": 3.5220298113594213,
+    "RMSE": 4.5078037261401604,
+    "Bias": 0.830365845429128,
+    "MAE_median_baseline": 3.545691906005222,
+    "skill": 0.00667347735592172,
+    "usable": false,
+    "min_skill": 0.02,
+    "reason": "does not beat the training-median baseline on held-out LIMS by the required 2%",
+    "quality": "I250"
+  }
+}

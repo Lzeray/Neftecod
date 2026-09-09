@@ -1,0 +1,277 @@
+{
+  "telemetry": [
+    {
+      "path": "/home/lenaz/Рабочий стол/ха/data/avt_tags.csv",
+      "rows_raw": 189217,
+      "rows": 189217,
+      "dropped_index_columns": [
+        "Unnamed: 0.1",
+        "Unnamed: 0"
+      ],
+      "sentinels": [
+        213.0,
+        240.0,
+        251.0,
+        252.0,
+        307.0,
+        313.0
+      ],
+      "cells_masked": 378395,
+      "t_start": "2023-01-01 00:00:00",
+      "t_end": "2026-08-07 00:00:00"
+    },
+    {
+      "path": "/home/lenaz/Рабочий стол/ха/data/242000_tags.csv",
+      "rows_raw": 189217,
+      "rows": 189217,
+      "dropped_index_columns": [
+        "Unnamed: 0"
+      ],
+      "sentinels": [
+        10.0,
+        213.0,
+        240.0,
+        251.0,
+        252.0,
+        307.0,
+        313.0
+      ],
+      "cells_masked": 63349,
+      "t_start": "2023-01-01 00:00:00",
+      "t_end": "2026-08-07 00:00:00"
+    }
+  ],
+  "sources": [
+    {
+      "name": "LIMS:sulfur",
+      "n": 1462,
+      "point": "hds_product",
+      "param": "Mg.Sulfur"
+    },
+    {
+      "name": "LIMS:D15",
+      "n": 1015,
+      "point": "hds_product",
+      "param": "D15"
+    },
+    {
+      "name": "LIMS:T95",
+      "n": 1292,
+      "point": "hds_product",
+      "param": "95%.T"
+    },
+    {
+      "name": "LIMS:T50",
+      "n": 1252,
+      "point": "hds_product",
+      "param": "50%.T"
+    },
+    {
+      "name": "LIMS:T90",
+      "n": 1252,
+      "point": "hds_product",
+      "param": "90%.T"
+    },
+    {
+      "name": "LIMS:CFPP",
+      "n": 417,
+      "point": "hds_product",
+      "param": "CFPP"
+    },
+    {
+      "name": "LIMS:CloudPoint",
+      "n": 1201,
+      "point": "hds_product",
+      "param": "CloudPoint"
+    },
+    {
+      "name": "LIMS:FlashPoint",
+      "n": 1518,
+      "point": "hds_product",
+      "param": "FlashPoint"
+    },
+    {
+      "name": "LIMS:CetaneNumber",
+      "n": 42,
+      "point": "hds_product",
+      "param": "CetaneNumber"
+    },
+    {
+      "name": "LIMS:IBP",
+      "n": 1291,
+      "point": "hds_product",
+      "param": "IBP.T"
+    },
+    {
+      "name": "LIMS:I250",
+      "n": 1282,
+      "point": "hds_product",
+      "param": "I250"
+    },
+    {
+      "name": "LIMSFEED:D15",
+      "n": 42,
+      "point": "hds_feed",
+      "param": "D15"
+    },
+    {
+      "name": "LIMSFEED:T95",
+      "n": 1276,
+      "point": "hds_feed",
+      "param": "95%.T"
+    },
+    {
+      "name": "LIMSFEED:T50",
+      "n": 1276,
+      "point": "hds_feed",
+      "param": "50%.T"
+    },
+    {
+      "name": "LIMSFEED:T90",
+      "n": 1234,
+      "point": "hds_feed",
+      "param": "90%.T"
+    },
+    {
+      "name": "LIMSFEED:CloudPoint",
+      "n": 1256,
+      "point": "hds_feed",
+      "param": "CloudPoint"
+    },
+    {
+      "name": "LIMSFEED:IBP",
+      "n": 1276,
+      "point": "hds_feed",
+      "param": "IBP.T"
+    },
+    {
+      "name": "LIMSFEED:sulfur",
+      "n": 132,
+      "point": "hds_feed",
+      "param": "Mass.Sulfur",
+      "unit_converted": "% масс. -> мг/кг (eq 1)"
+    },
+    {
+      "name": "PAK:sulfur",
+      "n": 189649,
+      "tag": "24-2000:Mg.Sulfur"
+    },
+    {
+      "name": "PAK:D15",
+      "n": 75455,
+      "tag": "24-2000:D15"
+    }
+  ],
+  "lims": {
+    "source": "LIMS",
+    "n_series": 54,
+    "n_values": 36800,
+    "unit_row_mismatches": [
+      {
+        "param": "D15",
+        "unit_declared": "°С",
+        "unit": "кг/м3"
+      },
+      {
+        "param": "EBP.T",
+        "unit_declared": "% об.",
+        "unit": "°С"
+      },
+      {
+        "param": "50%.T",
+        "unit_declared": "кг/м3",
+        "unit": "°С"
+      },
+      {
+        "param": "I350",
+        "unit_declared": "°С",
+        "unit": "% об."
+      }
+    ],
+    "path": "/home/lenaz/Рабочий стол/ха/ЛИМСы 01.01.2023 - н.в_ (2).xlsx"
+  },
+  "pak": {
+    "source": "PAK",
+    "n_series": 2,
+    "n_values": 265104,
+    "path": "/home/lenaz/Рабочий стол/ха/Выгрузка ПАК 01.01.2023 - н.в_.xlsx"
+  },
+  "rows": 189217,
+  "operating_rows": 179747,
+  "operating_note": "[DOP] operating = HDS feed above 30% of its median, reactor above 200 degC and crude charge above 30% of its median; shutdowns are excluded from every fit, range and reference.",
+  "t_start": "2023-01-01 00:00:00",
+  "t_end": "2026-08-07 00:00:00",
+  "tag_conflicts": [
+    {
+      "key": "HDS:T6",
+      "declared": "Поточный анализатор серы в дизельном топливе между коллекторами нагнетания и приёма Н-202/1,2",
+      "declared_kind": "sulfur",
+      "observed_kind": "temperature_or_flow",
+      "observed": {
+        "n": 189217,
+        "p01": 6.3173548507690445,
+        "p50": 362.6615295410156,
+        "p99": 385.5326721191406,
+        "max": 391.489990234375,
+        "min": -2.6479880809783936
+      }
+    },
+    {
+      "key": "HDS:P8",
+      "declared": "Полисеп. Реактор Р-202. Температура гсс на входе",
+      "declared_kind": "temperature",
+      "observed_kind": "pressure_or_small",
+      "observed": {
+        "n": 189217,
+        "p01": 0.006700569279491836,
+        "p50": 0.174007311463356,
+        "p99": 0.2358598655462264,
+        "max": 6.999456882476807,
+        "min": -3.7971386909484863
+      }
+    },
+    {
+      "key": "HDS:F19",
+      "declared": "Полисеп. Реактор Р-202. Давление на входе",
+      "declared_kind": "pressure",
+      "observed_kind": "temperature_or_flow",
+      "observed": {
+        "n": 186893,
+        "p01": -0.1225009188055992,
+        "p50": 213.6896209716797,
+        "p99": 253.0274401855469,
+        "max": 340.724853515625,
+        "min": -5.0301032066345215
+      }
+    },
+    {
+      "key": "HDS:F22",
+      "declared": "Блок стабилизации. Расход газа поддува на входе в К-201Температура в сепараторе С-205",
+      "declared_kind": "temperature",
+      "observed_kind": "large_flow",
+      "observed": {
+        "n": 189217,
+        "p01": 0.0,
+        "p50": 10991.65234375,
+        "p99": 17514.20953125,
+        "max": 21173.23828125,
+        "min": 0.0
+      }
+    },
+    {
+      "key": "HDS:F25",
+      "declared": "APC. Показания виртуального анализатора \"Температура вспышки ГОДТ\"",
+      "declared_kind": "temperature",
+      "observed_kind": "large_flow",
+      "observed": {
+        "n": 189214,
+        "p01": 0.0,
+        "p50": 13091.4619140625,
+        "p99": 15391.376689453125,
+        "max": 18234.5703125,
+        "min": 0.0
+      }
+    }
+  ],
+  "cache": "miss"
+}

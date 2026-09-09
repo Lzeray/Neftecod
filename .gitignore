@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Generated caches (parquet/pickle, ~124 MB, rebuilt by --no-cache)
+project/artifacts/cache/
+
+# Plant data package: not redistributable, and avt_tags.csv alone is 247 MB,
+# which exceeds GitHub's 100 MB per-file limit. See README for the expected
+# layout under paths.data_root.
+data/
+*.xlsx
+*.pdf
+*.docx

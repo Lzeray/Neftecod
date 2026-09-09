@@ -1,0 +1,138 @@
+# ===================================================================
+#  Configuration for the AVT -> HDS -> Blending diesel optimizer
+#  All paths are relative to the repository root (the directory that
+#  contains this `project/` folder), unless absolute.
+# ===================================================================
+seed: 20260909
+
+paths:
+  data_root: ".."                       # folder holding data/ and the xlsx files
+  avt_csv: "data/avt_tags.csv"
+  hds_csv: "data/242000_tags.csv"
+  lims_xlsx: "ЛИМСы 01.01.2023 - н.в_ (2).xlsx"
+  pak_xlsx: "Выгрузка ПАК 01.01.2023 - н.в_.xlsx"
+  tags_xlsx: "Теги_хакатон.xlsx"
+  schematics_pdf: "АВТ_схемы.pdf"
+  artifacts: "artifacts"
+  cache: "artifacts/cache"
+
+time:
+  Ts_s: 600.0                # sampling period of the telemetry grid, s (10 min)
+  train_end: "2025-06-30 23:50:00"   # time split: train <= this < test
+  test_end:  "2026-08-07 00:00:00"
+
+# ---- data cleaning -------------------------------------------------
+cleaning:
+  # values repeated exactly in >= min_repeats rows AND >= robust_z MAD from the
+  # column median AND present in >= min_columns columns of the same file are
+  # treated as instrument/DCS sentinels (see artifacts/assumptions.yaml).
+  sentinel_min_repeats: 200
+  sentinel_robust_z: 6.0
+  sentinel_min_columns: 2
+  # explicit sentinel values found by the detector on this data package
+  known_sentinels: [307.0, 313.0, 251.0, 252.0, 240.0, 213.0]
+  near_zero_abs: 1.0e-9       # |x| below this on a positive-scale tag -> dropout
+  stale_window: 18            # samples (3 h) for the zero-variance staleness test
+  stale_min_std: 1.0e-9
+
+# ---- quality specification (hard constraints) ----------------------
+spec:
+  S_max_mgkg: 10.0            # product diesel sulfur, hard limit
+  alpha: 0.05                 # chance-constraint level -> z_{1-alpha}
+  sigma_max: 4.0              # mg/kg, refusal threshold on sigma_pred (eq 66)
+  tau_lims_max_h: 72.0        # refusal threshold on LIMS age (eq 66)
+  tau_pak_max_h: 2.0          # PAK considered valid if fresher than this
+  # secondary specs, EN 590 / scenario; [DOP] - see assumptions register
+  T95_max_c: 360.0
+  flash_min_c: 55.0
+  density15_min: 820.0
+  density15_max: 845.0
+  cfpp_max_c: -5.0
+  cetane_min: 51.0
+
+# ---- horizons ------------------------------------------------------
+horizon:
+  # Prediction / control horizon in samples.  It must cover the identified
+  # transport delays (2.0 h on the reactor temperature, 4.5 h on the feed rate,
+  # 5.8 h on the loop pressure), otherwise a recommended move has no effect
+  # inside the horizon it is judged on and the report says so.
+  H: 42                       # 7 h
+  n_delay_max: 36             # max searched transport delay, samples (6 h)
+
+# ---- identification ------------------------------------------------
+ident:
+  na: 2                       # ARX output order
+  nb: 2                       # ARX input order per channel
+  lam: 1.0                    # ridge weight (eq 39)
+  huber_delta: 1.345          # Huber threshold in robust sigma units (eq 41)
+  pe_min_eig: 1.0e-6          # persistent-excitation floor (eq 44)
+  cond_max: 1.0e8             # condition-number guard on Phi'Phi
+  fir_len: 24
+  # fraction of the training window held out (in time) to select
+  # hyperparameters -- shrinkage, filter Q/R, whether ПАК may anchor
+  inner_val_frac: 0.25
+
+# ---- filter (eq 48-52) --------------------------------------------
+filter:
+  q_state: 1.0e-3
+  q_bias_per_h: 0.02          # mg^2/kg^2 per hour of random-walk growth (eq 52)
+  r_lims: 0.25                # (mg/kg)^2 lab repeatability variance
+  r_pak: 4.0                  # (mg/kg)^2 stream analyzer variance
+  chi2_gate_p: 0.99           # innovation gate confidence (eq 49/23)
+
+# ---- uncertainty (eq 58) ------------------------------------------
+uncertainty:
+  c_tau: 0.05                 # (mg/kg)^2 per hour of measurement age
+  lev_scale: 1.0              # leverage (extrapolation) multiplier
+  # [DOP] the extrapolation term of eq 58 is capped at this multiple of
+  # sigma_resid^2.  The growth of *structural* model error outside the
+  # identified domain has no known form, so an uncapped Mahalanobis term would
+  # let a single unusual feed sample quadruple the interval.  The raw distance
+  # is reported separately as an explicit extrapolation flag instead.
+  lev_cap: 3.0
+  # d^2 above this multiple of the domain dimension raises the flag
+  extrapolation_threshold_per_dim: 4.0
+
+# ---- optimizer -----------------------------------------------------
+optimize:
+  # |du| <= this fraction of the [DOP] model range per decision cycle.
+  # 5% of the model range is ~0.9 degC on the reactor temperature, which is a
+  # plausible single move over the 3 h horizon; it is an assumption, not a
+  # documented plant rate limit.
+  du_max_frac: 0.05
+  weights:                    # eq 65
+    c1_throughput: 1.0
+    c2_energy: 0.30
+    c3_severity: 2.0
+    c4_move: 0.10
+  gamma_robust: 1.0           # Gamma in eq 64
+  n_scenarios: 200            # SAA scenarios drawn from historical d
+  severity_max: 1.0           # S_sev^max (eq 31)
+
+# ---- blending (model_spec.md §4, §21; ТЗ §4) -----------------------
+# The product diesel is a blend of the hydrotreated stream and any
+# straight-run diesel routed around the hydrotreater.  Only the sulfur of both
+# components is actually measured in this package (the HDS feed LIMS point is
+# the straight-run diesel), so that is the only blend property with a fitted
+# basis; the cold-flow numbers below are [DOP] placeholders that exercise the
+# index path of eq 46 and must be recalibrated before use.
+blend:
+  enabled: true
+  components:
+    - name: hydrotreated_diesel
+      source: model                  # sulfur = the forecast of eq 55
+      w_lo: 0.50
+      w_hi: 1.00
+      value: 1.0                     # throughput value per unit fraction
+      cfpp_c: -18.0                  # [DOP]
+      flash_c: 62.0                  # [DOP]
+    - name: straight_run_diesel
+      source: lims_feed              # sulfur = LIMS at the HDS feed point
+      w_lo: 0.00
+      w_hi: 0.50
+      value: 1.35                    # [DOP] worth more: it skips the reactor
+      cfpp_c: -12.0                  # [DOP]
+      flash_c: 58.0                  # [DOP]
+  depressant:
+    dmax_c: 8.0                      # [DOP] saturating CFPP shift
+    k_ppm: 150.0

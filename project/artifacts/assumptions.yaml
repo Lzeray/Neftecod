@@ -1,0 +1,491 @@
+generated_for_train_end: '2025-06-30 23:50:00'
+statuses:
+  '[BALANCE]': consequence of mass/energy conservation
+  '[LIT]': literature correlation; transferability to be checked
+  '[DERIVED]': algebraic consequence of the stated equations
+  '[DOP]': assumption still to be confirmed by identification
+  '[SETTING]': operator policy, not a physical quantity
+rule: A historical min/max is never presented as an industrial limit (ТЗ §4).
+entries:
+- parameter: DCS bad-value sentinels
+  status: '[DOP]'
+  source: 'data-driven detector: a value repeated >= 200 times in >= 2 columns and
+    outside that column''s 0.1-99.9% range. Detected: [10.0, 213.0, 240.0, 251.0,
+    252.0, 307.0, 313.0]'
+  check: 'masked cells: 378395 (AVT) + 63349 (24-2000)'
+- parameter: operating-period mask
+  status: '[DOP]'
+  source: '[DOP] operating = HDS feed above 30% of its median, reactor above 200 degC
+    and crude charge above 30% of its median; shutdowns are excluded from every fit,
+    range and reference.'
+  check: 179747 of 189217 rows retained
+- parameter: LIMS analysis turnaround
+  status: '[DOP]'
+  source: the LIMS workbook carries one timestamp only; availability is taken as sample
+    time + 4 h so a result is never used before it could exist (eq 53)
+  check: supported by the cross-correlation of the ПАК sulfur against the laboratory
+    result, which peaks at a ~4 h lag
+- parameter: LIMS unit row
+  status: '[DOP]'
+  source: the unit row of the LIMS workbook is shifted relative to the parameter row
+    (50%.T labelled кг/м3, D15 labelled °С); units are taken from the parameter name
+    instead
+  check: 'mismatches recorded: [{''param'': ''D15'', ''unit_declared'': ''°С'', ''unit'':
+    ''кг/м3''}, {''param'': ''EBP.T'', ''unit_declared'': ''% об.'', ''unit'': ''°С''},
+    {''param'': ''50%.T'', ''unit_declared'': ''кг/м3'', ''unit'': ''°С''}, {''param'':
+    ''I350'', ''unit_declared'': ''°С'', ''unit'': ''% об.''}]'
+- parameter: tag dictionary conflicts
+  status: '[DOP]'
+  source: several КИП descriptions disagree with the data attached to them; the observed
+    physical kind wins and the conflict is recorded
+  check: 5 conflicting tags
+  conflicts:
+  - tag: HDS:T6
+    declared: sulfur
+    observed: temperature_or_flow
+    description: Поточный анализатор серы в дизельном топливе между коллекторами нагнетания
+      и приёма Н-202/1,2
+  - tag: HDS:P8
+    declared: temperature
+    observed: pressure_or_small
+    description: Полисеп. Реактор Р-202. Температура гсс на входе
+  - tag: HDS:F19
+    declared: pressure
+    observed: temperature_or_flow
+    description: Полисеп. Реактор Р-202. Давление на входе
+  - tag: HDS:F22
+    declared: temperature
+    observed: large_flow
+    description: Блок стабилизации. Расход газа поддува на входе в К-201Температура
+      в сепараторе С-205
+  - tag: HDS:F25
+    declared: temperature
+    observed: large_flow
+    description: APC. Показания виртуального анализатора "Температура вспышки ГОДТ"
+- parameter: delay/time constant of HDS:T5
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.188 on 979 laboratory results; significant = True
+  delay_h: 2.0
+  tau_h: 0.0
+- parameter: delay/time constant of HDS:F15
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.122 on 979 laboratory results; significant = True
+  delay_h: 6.0
+  tau_h: 6.0
+- parameter: delay/time constant of HDS:P3
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.103 on 979 laboratory results; significant = True
+  delay_h: 5.833333
+  tau_h: 48.0
+- parameter: delay/time constant of HDS:F26
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.132 on 979 laboratory results; significant = True
+  delay_h: 4.5
+  tau_h: 0.0
+- parameter: delay/time constant of HDS:F2
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.162 on 979 laboratory results; significant = True
+  delay_h: 2.666667
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:T55
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.120 on 979 laboratory results; significant = True
+  delay_h: 1.5
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:T20
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.054 on 979 laboratory results; significant = False
+  delay_h: 6.0
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:P67
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.044 on 979 laboratory results; significant = False
+  delay_h: 2.166667
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:F29
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.038 on 979 laboratory results; significant = False
+  delay_h: 1.5
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:F7
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.181 on 979 laboratory results; significant = True
+  delay_h: 0.833333
+  tau_h: 0.0
+- parameter: delay/time constant of AVT:F8
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.118 on 979 laboratory results; significant = True
+  delay_h: 6.0
+  tau_h: 48.0
+- parameter: delay/time constant of AVT:F9
+  status: '[DOP]'
+  source: cross-correlation peak of the shaped input against the LIMS sulfur on the
+    training window (model_spec.md §12, §37.1)
+  check: peak |r| = 0.061 on 979 laboratory results; significant = False
+  delay_h: 4.166667
+  tau_h: 0.0
+- parameter: activation energy Ea
+  status: '[LIT]'
+  source: 'fixed at 100 kJ/mol, the centre of the 80-150 kJ/mol range reported for
+    deep HDS of straight-run gas oil. NOT fitted: on closed-loop data temperature
+    and sulfur are confounded and a free fit drives Ea to its lower bound, destroying
+    the kinetic sign the recommendation depends on'
+  check: the deployed sensitivity dS/dT is n/a mg/kg per degC and is negative as eq
+    13-15 require
+  value_J_mol: 100000.0
+- parameter: lumped rate constant k_ref, orders n and a
+  status: '[DOP]'
+  source: non-linear least squares on eq 16 over the training window with a soft-L1
+    loss; k_ref absorbs W_cat/V_L and the absolute LHSV, which the package does not
+    supply
+  check: training MAE 2.5047258585407755 mg/kg on 979 laboratory results
+  k_ref: 4.392924
+  n: 1.95
+  a: 0.0
+- parameter: product density used in eq 2
+  status: '[DOP]'
+  source: 830 kg/m3 assumed for the mg/kg <-> mol/m3 conversion of the product stream
+  check: consistent with the LIMS D15 of the product point
+  value: 830.0
+- parameter: hydrogen mole fraction chi_H2
+  status: '[DOP]'
+  source: 0.8 assumed to convert the loop pressure to p_H2 (eq 17); the package contains
+    no recycle-gas composition
+  check: enters only through the kernel; a constant factor is absorbed by k_ref
+  value: 0.8
+- parameter: WABT weighting
+  status: '[DOP]'
+  source: 1/3 inlet + 2/3 outlet of the instrumented reactor temperatures; the bed
+    profile is not measured
+  check: used consistently in identification and in the sensitivity
+- parameter: instrumental variables
+  status: '[DOP]'
+  source: 'NOT APPLIED: only 7 plausibly exogenous signals (AVT:T55~lag, AVT:T20~lag,
+    AVT:P67~lag, AVT:F29~lag, AVT:F7~lag, AVT:F8~lag, AVT:F9~lag) for 12 regressors,
+    so the eq 43 rank condition fails. The package contains no external set-point
+    or excitation tag, and model_spec.md §18 forbids treating an arbitrary lagged
+    tag as an instrument. The closed-loop bias is therefore handled by *physics* instead:
+    the kernel carries the temperature/pressure/LHSV effects and the residual is sign-constrained
+    so it cannot reverse them.'
+  check: 'closed-loop confounding confirmed: the raw correlation is +0.182, i.e. the
+    sign the kinetics forbid'
+- parameter: residual sign constraints
+  status: '[LIT]'
+  source: the residual may correct the magnitude of the kinetic effects but never
+    their direction (model_spec.md §26)
+  check: 'violations clipped: 4'
+  clipped:
+  - 'HDS:T5~lag: fitted +0.245, physics requires sign -1 (HDS kinetics: a hotter reactor
+    cannot raise the product sulfur (eq 13-15)) -> clipped to 0'
+  - 'HDS:P3~lag: fitted +0.3438, physics requires sign -1 (Higher loop pressure raises
+    p_H2 (eq 17-18) and therefore the HDS rate (eq 13)) -> clipped to 0'
+  - 'HDS:F26~lag: fitted -0.01692, physics requires sign +1 (More feed means a higher
+    LHSV and less residence time (eq 16)) -> clipped to 0'
+  - 'HDS:F15~lag: fitted -0.001363, physics requires sign +1 (Quench cools the second
+    bed, lowering the reaction rate (eq 14 through eq 24)) -> clipped to 0'
+- parameter: residual shrinkage
+  status: '[DOP]'
+  source: selected on an inner time split of the training window
+  check: chosen scale = 0.0
+- parameter: offset filter Q_eta, R_lab and the ПАК switch
+  status: '[DOP]'
+  source: grid search scored by the causal replay MAE on the inner validation block
+    (model_spec.md §37.5)
+  check: 'chosen {''residual_scale'': 0.0, ''q_bias_per_h'': 0.002, ''r_lims'': 0.25,
+    ''use_pak'': False, ''MAE'': 1.467560046435349, ''RMSE'': 2.040108728841063, ''n'':
+    235, ''anchors'': 1308, ''gate_rejected'': 150}; the search rejected the ПАК anchor'
+- parameter: innovation gate
+  status: '[DOP]'
+  source: measurements more than 6 sigma from the prediction are rejected (model_spec.md
+    §23)
+  check: 146 of 1312 anchors rejected
+- parameter: sigma_pred
+  status: '[DOP]'
+  source: 'sigma set from the (1-alpha) residual quantile, not the RMS: the residual
+    distribution is heavy tailed (eq 58 is an assumption, eq 59-60 is the guarantee-style
+    check). anchored replay residual (eq 55 including eta), training window'
+  check: checked by the held-out interval coverage in artifacts/validation_report.json
+  sigma_resid: 2.268909
+  c_tau: 0.05
+- parameter: uncertainty set U for the feed
+  status: '[DOP]'
+  source: '[DOP] box U from the 95% quantile of |d - median| over the training window;
+    an estimate of plausible feed variation, not a certified envelope.'
+  check: the robust margin of eq 64 is verified by sampling U in tests/test_optimize.py
+  center:
+  - 9236.99975013733
+  half_widths:
+  - 1390.000581741333
+- parameter: unmeasured disturbance crude_density_kgm3
+  status: '[DOP]'
+  source: AVT:D10 has 10 non-null rows, all equal to the bad-value code 240.0; there
+    is no usable crude-density measurement.
+  check: handled through U (eq 64), never as a fitted regressor
+- parameter: unmeasured disturbance crude_sulfur_wt_pct
+  status: '[DOP]'
+  source: No tag in the КИП dictionary and no LIMS point for crude sulfur; the strongest
+    driver of product sulfur is unmeasured.
+  check: handled through U (eq 64), never as a fitted regressor
+- parameter: unmeasured disturbance crude_water_wt_pct
+  status: '[DOP]'
+  source: No tag and no LIMS point for crude water content.
+  check: handled through U (eq 64), never as a fitted regressor
+- parameter: operating range of HDS:T5
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [+0, +0] contains zero -- excluded from the manipulated set (§19, §31) | retained:
+    the sensitivity comes from the physical kernel (eq 16), not from the fitted residual'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 354.14154
+  hi: 382.744239
+  du_max: 1.430135
+  unit: degC
+  controllable: true
+  label: R-201 outlet temperature (HDS reactor)
+- parameter: operating range of HDS:F15
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [+0, +0] contains zero -- excluded from the manipulated set (§19, §31) | the
+    inner-split selection shrank the data-driven residual to zero, so this channel
+    has no credited gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 3032.924961
+  hi: 3598.24224
+  du_max: 28.265864
+  unit: kg/h
+  controllable: false
+  label: Quench flow to R-202
+- parameter: operating range of HDS:P3
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [+0, +0] contains zero -- excluded from the manipulated set (§19, §31) | retained:
+    the sensitivity comes from the physical kernel (eq 16), not from the fitted residual'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 3.495408
+  hi: 3.783629
+  du_max: 0.014411
+  unit: MPa
+  controllable: true
+  label: HDS reactor-loop pressure
+- parameter: operating range of HDS:F26
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [+0, +0] contains zero -- excluded from the manipulated set (§19, §31) | retained:
+    the sensitivity comes from the physical kernel (eq 16), not from the fitted residual'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 187.329481
+  hi: 293.006613
+  du_max: 5.283857
+  unit: m3/h
+  controllable: true
+  label: HDS feed rate (volumetric)
+- parameter: operating range of HDS:F2
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [-3.167e-05, +0] contains zero -- excluded from the manipulated set (§19, §31)
+    | the inner-split selection shrank the data-driven residual to zero, so this channel
+    has no credited gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 84718.668164
+  hi: 102655.659375
+  du_max: 896.849561
+  unit: nm3/h
+  controllable: false
+  label: Recycle-gas rate (from C-201)
+- parameter: operating range of AVT:T55
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [-0.2207, -0.1506] excludes zero -- offered as a control handle | the inner-split
+    selection shrank the data-driven residual to zero, so this channel has no credited
+    gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 378.466079
+  hi: 385.033327
+  du_max: 0.328362
+  unit: degC
+  controllable: false
+  label: AVT furnace P-3 outlet temperature
+- parameter: operating range of AVT:T20
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [-0.1574, +0.08399] contains zero -- excluded from the manipulated set (§19,
+    §31) | the inner-split selection shrank the data-driven residual to zero, so this
+    channel has no credited gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 112.853867
+  hi: 116.210667
+  du_max: 0.16784
+  unit: degC
+  controllable: false
+  label: K-2 top temperature
+- parameter: operating range of AVT:P67
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [-3.399, +1.271] contains zero -- excluded from the manipulated set (§19, §31)
+    | the inner-split selection shrank the data-driven residual to zero, so this channel
+    has no credited gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 1.09916
+  hi: 1.188597
+  du_max: 0.004472
+  unit: MPa
+  controllable: false
+  label: K-2 top pressure
+- parameter: operating range of AVT:F29
+  status: '[DOP]'
+  source: '[DOP] conservative model range: 90% of the 5%-95% historical band around
+    the median. NOT an industrial limit; no confirmed range was supplied. | gain 90%
+    CI [-0.4946, +0.06678] contains zero -- excluded from the manipulated set (§19,
+    §31) | the inner-split selection shrank the data-driven residual to zero, so this
+    channel has no credited gain'
+  check: NOT an industrial limit; the plant is allowed to sit outside it and the optimiser
+    may only move towards it at the rate limit
+  lo: 7.076287
+  hi: 9.61837
+  du_max: 0.127104
+  unit: t/h
+  controllable: false
+  label: Steam to K-2
+- parameter: severity proxy HDS:W10
+  status: '[DOP]'
+  source: robust median/MAD standardisation on the training window; the reference
+    is the 90th percentile of the operating band
+  check: Bed fouling / pressure drop; declared and observed kind agree.
+  ref: 4.260737
+  scale: 1.431698
+  weight: 0.2
+- parameter: severity proxy AVT:T55
+  status: '[DOP]'
+  source: robust median/MAD standardisation on the training window; the reference
+    is the 90th percentile of the operating band
+  check: Furnace tube-skin proxy (§29).
+  ref: 384.729089
+  scale: 2.391444
+  weight: 0.2
+- parameter: severity proxy HDS:T5
+  status: '[DOP]'
+  source: robust median/MAD standardisation on the training window; the reference
+    is the 90th percentile of the operating band
+  check: Severity of the hydrotreating regime; also the deactivation handle of eq
+    62.
+  ref: 380.225092
+  scale: 8.141699
+  weight: 0.2
+- parameter: severity proxy HDS:F26
+  status: '[DOP]'
+  source: robust median/MAD standardisation on the training window; the reference
+    is the 90th percentile of the operating band
+  check: Loading vs the historical operating band (§29).
+  ref: 292.04451
+  scale: 37.929729
+  weight: 0.2
+- parameter: severity proxy AVT:F29
+  status: '[DOP]'
+  source: robust median/MAD standardisation on the training window; the reference
+    is the 90th percentile of the operating band
+  check: Column loading proxy.
+  ref: 9.436013
+  scale: 0.808622
+  weight: 0.2
+- parameter: catalyst deactivation
+  status: '[DOP]'
+  source: normalised-temperature drift of eq 62
+  check: Normalised-temperature drift (eq 62). This is an offset hypothesis (eq 47),
+    NOT a measured catalyst activity.
+  slope_c_per_1000h: -0.515896
+  significant: false
+- parameter: objective weights c1..c4
+  status: '[DOP]'
+  source: 'operator policy, config/config.yaml: {''c1_throughput'': 1.0, ''c2_energy'':
+    0.3, ''c3_severity'': 2.0, ''c4_move'': 0.1}'
+  check: quality is never in the objective -- objective.assert_quality_not_in_objective
+    raises if it is
+- parameter: throughput and energy proxies
+  status: '[DOP]'
+  source: Throughput and energy are transparent linear proxies normalised by each
+    channel's model range; the package contains no economic data (ТЗ §4).
+  check: reported alongside every recommendation so the trade-off is visible
+- parameter: chance level alpha
+  status: '[SETTING]'
+  source: 'operator policy: alpha = 0.05'
+  check: held-out coverage is reported in artifacts/validation_report.json
+- parameter: rate limit du_max
+  status: '[DOP]'
+  source: 5% of each channel's model range per decision cycle; no documented plant
+    rate limit was supplied
+  check: enforced by the solver and re-checked by constraints.Bound.feasible
+- parameter: blend component sulfur
+  status: '[BALANCE]'
+  source: the hydrotreated component carries the eq 55 forecast; the straight-run
+    component carries the measured LIMS sulfur of the HDS feed point, which is the
+    same material before the reactor
+  check: sulfur blends linearly in mass (eq 7) -- verified in tests/test_blending.py
+- parameter: blend cold-flow properties and component values
+  status: '[DOP]'
+  source: placeholders in config/config.yaml that exercise the index path of eq 46;
+    they are not calibrated on this package
+  check: must be recalibrated before any operational use
+  components:
+  - name: hydrotreated_diesel
+    source: model
+    w_lo: 0.5
+    w_hi: 1.0
+    value: 1.0
+    cfpp_c: -18.0
+    flash_c: 62.0
+  - name: straight_run_diesel
+    source: lims_feed
+    w_lo: 0.0
+    w_hi: 0.5
+    value: 1.35
+    cfpp_c: -12.0
+    flash_c: 58.0
+- parameter: blending indices BI(.)
+  status: '[LIT/DOP]'
+  source: power-law cold-flow index, Wickey-Chittenden flash index, Refutas viscosity
+    index
+  check: inversion and non-linearity verified in tests/test_blending.py
+- parameter: ВАК virtual-analyser formulas
+  status: '[DOP]'
+  source: parsed from the workbook (Russian decimal commas, 'x' as the multiplication
+    sign, one repaired and one truncated formula) and scored against held-out LIMS
+  check: 'see artifacts/vak_audit.json: a formula is used as a kernel only if it beats
+    a training-median baseline on the test window'

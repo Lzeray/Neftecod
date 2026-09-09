@@ -1,0 +1,29 @@
+{
+  "stable": {
+    "scenario": {
+      "timestamp": "2026-07-12 14:00:00",
+      "title": "Stable period, margin to the specification",
+      "expect": "A low sulfur forecast leaves room under the 10 mg/kg chance constraint, so the admissible set is non-empty and the optimiser only fine-tunes the regime, with every hard constraint satisfied. This state is RARE: it holds in 4 of 53 640 held-out operating samples with a fresh laboratory result. The unit spends almost all of its time unable to certify the limit at 95% confidence."
+    },
+    "action": "recommend",
+    "headline": "Increase R-201 outlet temperature (HDS reactor) 372.3674 -> 372.4182 degC (+1 more)"
+  },
+  "at_limit": {
+    "scenario": {
+      "timestamp": "2025-07-01 00:00:00",
+      "title": "Operating at the specification limit",
+      "expect": "The forecast plus the statistical back-off of eq 63 exceeds 10 mg/kg: the admissible set is empty, so the system falls back to the lexicographic risk-reduction stage and states plainly that the limit is not certified."
+    },
+    "action": "mitigate",
+    "headline": "Risk reduction only -- increase R-201 outlet temperature (HDS reactor) 373.5028 -> 374.9329 degC; the 10 mg/kg limit is NOT certified; attainable confidence 79%"
+  },
+  "stale_data": {
+    "scenario": {
+      "timestamp": "2026-04-27 09:00:00",
+      "title": "Stale laboratory data",
+      "expect": "The last laboratory sulfur result is over 300 h old and the stream analyser cannot stand in, so the freshness clause of eq 66 fails and the system refuses."
+    },
+    "action": "refuse",
+    "headline": "No reliable recommendation"
+  }
+}
